@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App - Busca CEP</title>
+
+</head>
+
+<body>
+    <h3>Aplicação busca CEP - IFMG+ - JS Básico</h3>
+    <script>
+
+        function buscarCep() {
+
+            let cep = prompt('Digite aqui o CEP que você deseja buscar: ')
+            let urlApi = "https://brasilapi.com.br/api/cep/v2/" + cep
+
+            fetch(urlApi) //Puxar os dados do servidor externo
+                .then(function (resposta) { //Depois que puxar os dados executar a função, recebe os dados da resposta
+                    resposta.json().then(function (dados) {//func que recebe os dados transformados, e exc uma ação.
+                        console.log(dados.street);
+
+                    
+                        document.getElementById('id').innerHTML = "O CEP buscado"
+
+                    })
+                })
+
+                .catch(function (erro) {
+                    console.log("Ocorreu um erro ao buscar os dados", erro)
+                })
+
+
+        }
+
+
+
+        buscarCep()
+
+
+    </script>
+
+    <h4 id="id"></h4>
+</body>
+
+</html>
